@@ -1,0 +1,77 @@
+{
+  "name": "g2plot-classical-funnel",
+  "version": "0.0.1",
+  "description": "Classical Funnel based on AntV/G2Plot.",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "module": "esm/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib",
+    "esm",
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "clean": "rimraf -rf lib esm dist",
+    "lint-staged": "lint-staged",
+    "build:umd": "rimraf ./dist && rollup -c",
+    "build:cjs": "rimraf ./lib && tsc --module commonjs --outDir lib",
+    "build:esm": "rimraf ./esm && tsc --module ESNext --outDir esm",
+    "build": "npm run clean && npm run build:cjs && npm run build:esm && npm run build:umd",
+    "prepublishOnly": "npm run build",
+    "test": "jest",
+    "test-live": "DEBUG_MODE=1 jest --watch ./__tests__/plots/index-spec.ts"
+  },
+  "peerDependencies": {
+    "@antv/g2plot": "^2.0.0"
+  },
+  "keywords": [
+    "g2plot",
+    "funnel"
+  ],
+  "devDependencies": {
+    "@antv/g2plot": "^2.0.0",
+    "@babel/core": "^7.10.4",
+    "@babel/plugin-transform-runtime": "^7.11.5",
+    "@babel/preset-env": "^7.10.4",
+    "@babel/runtime": "^7.11.2",
+    "@commitlint/cli": "^8.2.0",
+    "@rollup/plugin-commonjs": "^15.0.0",
+    "@rollup/plugin-node-resolve": "^9.0.0",
+    "@types/jest": "^26.0.15",
+    "babel-loader": "^8.1.0",
+    "husky": "^3.0.5",
+    "jest": "^26.6.3",
+    "jest-electron": "^0.1.7",
+    "jest-extended": "^0.11.2",
+    "lint-staged": "^9.3.0",
+    "prettier": "^1.18.2",
+    "rimraf": "^3.0.0",
+    "rollup": "^2.26.10",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-size": "^0.2.2",
+    "rollup-plugin-typescript": "^1.0.1",
+    "rollup-plugin-uglify": "^6.0.3",
+    "ts-jest": "^26.4.4",
+    "typescript": "^3.6.3"
+  },
+  "jest": {
+    "runner": "jest-electron/runner",
+    "testEnvironment": "jest-electron/environment",
+    "setupFilesAfterEnv": [
+      "jest-extended"
+    ],
+    "preset": "ts-jest",
+    "collectCoverage": false,
+    "collectCoverageFrom": [
+      "src/**/*.ts",
+      "!**/node_modules/**",
+      "!**/vendor/**",
+      "!**/_template/**",
+      "!**/(pie|radar)/interactions/**"
+    ],
+    "testRegex": "/__tests__/.*-spec\\.ts?$"
+  }
+  
+}
