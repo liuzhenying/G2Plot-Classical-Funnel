@@ -40,14 +40,10 @@ describe('bar', () => {
 
     const chart = funnel.chart;
    
-    console.log(funnel.chart);
-    // expect(geometry)
-
     expect(chart.appendPadding).toEqual([0, 90, 0, 30]);
 
     const geometry = funnel.chart.geometries[0];
 
-    console.log(geometry);
     // 数据量
     expect(geometry.elements.length).toBe(data.length);
     expect(geometry.type).toBe('interval');

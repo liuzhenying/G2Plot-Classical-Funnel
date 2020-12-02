@@ -73,5 +73,4 @@
     ],
     "testRegex": "/__tests__/.*-spec\\.ts?$"
   }
-  
 }
